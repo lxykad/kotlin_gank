@@ -31,6 +31,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    //noinspection GradleCompatible
     implementation "com.android.support:appcompat-v7:${rootProject.support_version}"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
@@ -41,4 +42,8 @@ dependencies {
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     kapt "com.android.databinding:compiler:2.3.0"
     compile 'com.orhanobut:logger:2.1.1'
+    // ui库
+    compile 'com.qmuiteam:qmui:1.0.4'
+    //recyclerview adapter
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.33'
 }
