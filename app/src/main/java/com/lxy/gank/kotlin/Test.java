@@ -6,4 +6,6 @@ package com.lxy.gank.kotlin;
 
 public class Test {
     private String mUrl = "http://gank.io/api/data/Android/10/1";
+
+
 }

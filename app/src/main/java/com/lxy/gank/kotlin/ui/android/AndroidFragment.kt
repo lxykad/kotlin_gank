@@ -2,7 +2,10 @@ package com.lxy.gank.kotlin.ui.android
 
 import com.lxy.gank.kotlin.R
 import com.lxy.gank.kotlin.base.BaseFragment
-import com.orhanobut.logger.Logger
+import kotlinx.coroutines.experimental.async
+import okhttp3.Request
+import org.jetbrains.anko.support.v4.onUiThread
+import org.jetbrains.anko.support.v4.uiThread
 import java.net.URL
 import kotlin.concurrent.thread
 
@@ -31,15 +34,9 @@ class AndroidFragment : BaseFragment() {
 
     fun loadData() {
 
-        thread {
-            kotlin.run {
-                val json = URL(mUrl).readText()
-                Thread.sleep(1000)
-                println("json======" + json)
-            }
-        }
-
-
+        val json = URL(mUrl).readText()
+        onUiThread { println("json======" + json.toString()) }
     }
 
 }
+
