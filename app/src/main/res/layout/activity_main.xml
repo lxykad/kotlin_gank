@@ -11,7 +11,7 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#f00"
+            android:background="#39c6c1"
             tl:layout_constraintBottom_toBottomOf="parent"
             tl:tl_iconHeight="23dp"
             tl:tl_iconWidth="23dp"
