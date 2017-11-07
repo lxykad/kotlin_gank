@@ -2,7 +2,6 @@ package com.lxy.gank.kotlin.ui.android
 
 import com.lxy.gank.kotlin.R
 import com.lxy.gank.kotlin.base.BaseFragment
-import kotlinx.coroutines.experimental.async
 import okhttp3.Request
 import org.jetbrains.anko.support.v4.onUiThread
 import org.jetbrains.anko.support.v4.uiThread
@@ -34,8 +33,7 @@ class AndroidFragment : BaseFragment() {
 
     fun loadData() {
 
-        val json = URL(mUrl).readText()
-        onUiThread { println("json======" + json.toString()) }
+       // val json = URL(mUrl).readText()
     }
 
 }

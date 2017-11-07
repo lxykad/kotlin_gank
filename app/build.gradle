@@ -55,11 +55,11 @@ dependencies {
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.18'
     //rxjava
-    compile 'io.reactivex.rxjava2:rxjava:2.1.5'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.6'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     //glide
-    compile 'com.github.bumptech.glide:glide:4.3.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.2.0'
+    compile 'com.github.bumptech.glide:glide:4.3.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
     compile 'jp.wasabeef:glide-transformations:3.0.1'
     //RxCache
     compile 'com.github.VictorAlbertos.RxCache:runtime:1.8.0-2.x'
@@ -67,10 +67,14 @@ dependencies {
     //dagger2
     //compile 'com.google.dagger:dagger:2.12'
     //provided 'com.google.dagger:dagger-compiler:2.12'
-   // provided 'org.glassfish:javax.annotation:10.0-b28'
+    // provided 'org.glassfish:javax.annotation:10.0-b28'
     //rxbinding rxpermission
     compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
     compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
-    //anko
-    compile "org.jetbrains.anko:anko:0.10.2"
+    // Anko
+    compile "org.jetbrains.anko:anko-commons:0.10.2"
+    compile "org.jetbrains.anko:anko-sdk25:0.10.2"
+    compile "org.jetbrains.anko:anko-appcompat-v7:0.10.2"
+    compile "org.jetbrains.anko:anko-design:0.10.2"
+    compile "org.jetbrains.anko:anko-recyclerview-v7:0.10.2"
 }
