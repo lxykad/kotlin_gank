@@ -29,6 +29,10 @@ class IosFragment : BaseFragment() {
 
         }
 
+        val list = listOf<Student>(Student("zhangsan",18), Student("lisi",16))
+        println(list.maxBy { it.age })
+
+
     }
 
     override fun getLayoutId(): Int {
@@ -38,3 +42,8 @@ class IosFragment : BaseFragment() {
     override fun initChildBinding() {
     }
 }
+
+data class Student(val name:String,val age:Int){
+
+}
+
