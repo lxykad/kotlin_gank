@@ -1,11 +1,8 @@
 package com.lxy.gank.kotlin.ui.android
 
-import android.content.Intent
 import android.support.v4.util.Pair
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.ViewGroup
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.core.Method
 import com.github.kittinunf.fuel.httpGet
@@ -14,21 +11,62 @@ import com.lxy.gank.kotlin.base.BaseFragment
 import com.lxy.gank.kotlin.ui.bean.SkilBean
 import com.lxy.gank.kotlin.ui.common.QuickAdapter
 import com.lxy.gank.kotlin.ui.common.SkilAdapter
+import com.lxy.gank.kotlin.ui.http.ApiService
+import com.lxy.gank.kotlin.ui.http.HttpHelper
+import com.orhanobut.logger.Logger
+import io.reactivex.Observer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.jetbrains.anko.support.v4.find
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by lxy on 2017/10/28.
  */
 class AndroidFragment : BaseFragment() {
 
-    private val mUrl = "http://gank.io/api/data/Android/50/1"
+    private val mUrl = "http://gank.io/api/data/Android/10/1"
 
     override fun visiableToUser() {
 
     }
 
     override fun firstVisiableToUser() {
-        loadData()
+        // loadData()
+        val apiService = Retrofit.Builder()
+                .client(getOkhttpClient()?.build())
+                .baseUrl(HttpHelper.baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build()
+                .create(ApiService::class.java)
+
+        apiService.loadAndroidData(10,1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : Observer<SkilBean> {
+                    override fun onSubscribe(d: Disposable) {
+
+                    }
+
+                    override fun onComplete() {
+
+                    }
+
+                    override fun onNext(t: SkilBean) {
+                        println("res========suc")
+                    }
+
+                    override fun onError(e: Throwable) {
+                        println("res========err")
+                    }
+                })
 
     }
 
@@ -53,6 +91,22 @@ class AndroidFragment : BaseFragment() {
 
                     rv.adapter = SkilAdapter(user!!.results)
                 }
+    }
+
+    //
+    fun getOkhttpClient(): OkHttpClient.Builder? {
+
+        val builder = OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10, TimeUnit.SECONDS)
+
+        val log = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger {
+            Logger.d("http_response=====$it")
+        })
+        log.level = HttpLoggingInterceptor.Level.BODY
+
+        return builder
     }
 
 }
