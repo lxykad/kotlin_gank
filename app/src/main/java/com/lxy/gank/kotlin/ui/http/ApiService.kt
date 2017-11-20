@@ -10,6 +10,6 @@ import retrofit2.http.Path
  */
 interface ApiService {
 
-    @GET("/Android/{count}/{page}/")
-    fun loadAndroidData(@Path("count") count: Int,@Path("page") page: Int):Observable<SkilBean>
+    @GET("{type}/{count}/{page}")
+    fun loadAndroidData(@Path("type") type: String, @Path("count") count: Int, @Path("page") page: Int):Observable<SkilBean>
 }

@@ -47,7 +47,7 @@ class AndroidFragment : BaseFragment() {
                 .build()
                 .create(ApiService::class.java)
 
-        apiService.loadAndroidData(10,1)
+        apiService.loadAndroidData("Android",10,1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Observer<SkilBean> {
@@ -60,7 +60,7 @@ class AndroidFragment : BaseFragment() {
                     }
 
                     override fun onNext(t: SkilBean) {
-                        println("res========suc")
+                        println("res========suc===${t.results.size}")
                     }
 
                     override fun onError(e: Throwable) {
