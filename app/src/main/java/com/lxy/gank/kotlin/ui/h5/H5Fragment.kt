@@ -4,7 +4,6 @@ import com.lxy.gank.kotlin.R
 import com.lxy.gank.kotlin.base.BaseApplication
 import com.lxy.gank.kotlin.base.BaseFragment
 import com.lxy.gank.kotlin.ui.bean.SkilBean
-import com.orhanobut.logger.Logger
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -44,6 +43,10 @@ class H5Fragment: BaseFragment() {
     }
 
     override fun initChildBinding() {
+    }
+
+    fun setRecyclerView(){
+
     }
 
 }
