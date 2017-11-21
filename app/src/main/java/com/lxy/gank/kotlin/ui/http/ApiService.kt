@@ -11,5 +11,5 @@ import retrofit2.http.Path
 interface ApiService {
 
     @GET("{type}/{count}/{page}")
-    fun loadAndroidData(@Path("type") type: String, @Path("count") count: Int, @Path("page") page: Int):Observable<SkilBean>
+    fun loadSkilData(@Path("type") type: String, @Path("count") count: Int, @Path("page") page: Int):Observable<SkilBean>
 }

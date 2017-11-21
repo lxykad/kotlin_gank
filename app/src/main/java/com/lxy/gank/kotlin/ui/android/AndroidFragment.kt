@@ -47,7 +47,7 @@ class AndroidFragment : BaseFragment() {
                 .build()
                 .create(ApiService::class.java)
 
-        apiService.loadAndroidData("Android",10,1)
+        apiService.loadSkilData("Android",10,1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Observer<SkilBean> {
