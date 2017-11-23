@@ -1,5 +1,6 @@
 package com.lxy.gank.kotlin.ui.common
 
+import android.widget.ImageView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.lxy.gank.kotlin.R
@@ -12,5 +13,7 @@ class MeiZiAdapter(resId: Int, list: List<MeiZiBean.Result>) : BaseQuickAdapter<
 
     override fun convert(holder: BaseViewHolder?, item: MeiZiBean.Result?) {
         holder?.setText(R.id.tv_title, item?.desc)
+        val imageView = holder?.getView<ImageView>(R.id.image_view)
+        
     }
 }

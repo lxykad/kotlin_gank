@@ -1,6 +1,8 @@
 package com.lxy.gank.kotlin.ui.meizi
 
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.StaggeredGridLayoutManager
 import com.lxy.gank.kotlin.R
 import com.lxy.gank.kotlin.base.BaseApplication
 import com.lxy.gank.kotlin.base.BaseFragment
@@ -56,7 +58,9 @@ class MeiZiFragment : BaseFragment() {
     }
 
     fun setList(list: List<MeiZiBean.Result>) {
-        recycler_view.layoutManager = LinearLayoutManager(context)
+        // recycler_view.layoutManager = LinearLayoutManager(context)
+        recycler_view.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        //recycler_view.addItemDecoration()
         var adapter: MeiZiAdapter = MeiZiAdapter(R.layout.list_item_meizi, list)
         recycler_view.adapter = adapter
     }
