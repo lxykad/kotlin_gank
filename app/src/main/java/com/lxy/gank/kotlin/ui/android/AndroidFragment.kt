@@ -9,6 +9,7 @@ import com.github.kittinunf.fuel.httpGet
 import com.lxy.gank.kotlin.R
 import com.lxy.gank.kotlin.base.BaseFragment
 import com.lxy.gank.kotlin.ui.bean.SkilBean
+import com.lxy.gank.kotlin.ui.common.DataQuickAdapter
 import com.lxy.gank.kotlin.ui.common.QuickAdapter
 import com.lxy.gank.kotlin.ui.common.SkilAdapter
 import com.lxy.gank.kotlin.ui.http.ApiService
@@ -18,6 +19,7 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_android.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.jetbrains.anko.support.v4.find
@@ -47,7 +49,7 @@ class AndroidFragment : BaseFragment() {
                 .build()
                 .create(ApiService::class.java)
 
-        apiService.loadSkilData("Android",10,1)
+        apiService.loadSkilData("Android", 10, 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Observer<SkilBean> {
@@ -61,6 +63,7 @@ class AndroidFragment : BaseFragment() {
 
                     override fun onNext(t: SkilBean) {
                         println("res========suc===${t.results.size}")
+                        setList(t.results)
                     }
 
                     override fun onError(e: Throwable) {
@@ -75,6 +78,12 @@ class AndroidFragment : BaseFragment() {
     }
 
     override fun initChildBinding() {
+    }
+
+    fun setList(list: List<SkilBean.Result>) {
+        recycler_view.layoutManager = LinearLayoutManager(context)
+        val adapter: DataQuickAdapter = DataQuickAdapter(R.layout.list_item_skil, list)
+        recycler_view.adapter = adapter
     }
 
     fun loadData() {

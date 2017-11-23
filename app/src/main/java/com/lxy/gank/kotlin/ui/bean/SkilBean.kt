@@ -17,7 +17,6 @@ data class SkilBean(var error: Boolean, var results: List<SkilBean.Result>) : Se
         }
     }
 
-
     data class Bean(
             val error: Boolean, //false
             val results: List<Result>

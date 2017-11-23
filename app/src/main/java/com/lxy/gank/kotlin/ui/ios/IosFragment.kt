@@ -1,11 +1,16 @@
 package com.lxy.gank.kotlin.ui.ios
 
-import android.content.Intent
+import android.support.v7.widget.LinearLayoutManager
 import com.lxy.gank.kotlin.R
+import com.lxy.gank.kotlin.base.BaseApplication
 import com.lxy.gank.kotlin.base.BaseFragment
-import com.lxy.gank.kotlin.ui.detail.VideoActivity
-import com.orhanobut.logger.Logger
-import kotlinx.android.synthetic.main.fragment_ios.*
+import com.lxy.gank.kotlin.ui.bean.SkilBean
+import com.lxy.gank.kotlin.ui.common.DataQuickAdapter
+import io.reactivex.Observer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_android.*
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -14,24 +19,12 @@ import org.jetbrains.anko.support.v4.toast
 class IosFragment : BaseFragment() {
 
     override fun visiableToUser() {
-        Logger.d("==========ios======visiableToUser")
+
     }
 
     override fun firstVisiableToUser() {
-        Logger.d("==========ios======firstVisiableToUser")
 
-        bt.setOnClickListener { v->toast("bt")
-
-            val intent = Intent()
-            intent.setClass(context,VideoActivity::class.java)
-            intent.putExtra("key","from ios fragment")
-            startActivity(intent)
-
-        }
-
-        val list = listOf<Student>(Student("zhangsan",18), Student("lisi",16))
-        println(list.maxBy { it.age })
-
+        loadData()
 
     }
 
@@ -41,9 +34,33 @@ class IosFragment : BaseFragment() {
 
     override fun initChildBinding() {
     }
-}
 
-data class Student(val name:String,val age:Int){
+    fun loadData() {
+        BaseApplication.getApiService()
+                .loadSkilData("iOS", 10, 1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : Observer<SkilBean> {
+                    override fun onError(e: Throwable) {
+                    }
 
+                    override fun onComplete() {
+                    }
+
+                    override fun onSubscribe(d: Disposable) {
+                    }
+
+                    override fun onNext(t: SkilBean) {
+                        setList(t.results)
+                    }
+
+                })
+    }
+
+    fun setList(list: List<SkilBean.Result>) {
+        recycler_view.layoutManager = LinearLayoutManager(context)
+        val adapter: DataQuickAdapter = DataQuickAdapter(R.layout.list_item_skil, list)
+        recycler_view.adapter = adapter
+    }
 }
 
