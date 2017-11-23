@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.detail.ArticleDetailActivity" />
-        <activity android:name=".ui.detail.VideoActivity"/>
+        <activity android:name=".ui.detail.VideoActivity" />
+        <activity android:name=".ui.meizi.ImagePreviewActivity"></activity>
     </application>
 
 </manifest>
