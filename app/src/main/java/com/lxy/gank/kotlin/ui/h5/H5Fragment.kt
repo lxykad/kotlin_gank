@@ -9,10 +9,12 @@ import com.lxy.gank.kotlin.databinding.FragmentH5Binding
 import com.lxy.gank.kotlin.ui.bean.SkilBean
 import com.lxy.gank.kotlin.ui.common.DataAdapter
 import com.lxy.gank.kotlin.ui.common.DataQuickAdapter
+import com.lxy.gank.kotlin.ui.common.MeiZiDecoration
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_android.*
 
 /**
  * Created by lxy on 2017/10/28.
@@ -39,16 +41,9 @@ class H5Fragment : BaseFragment() {
 
     fun setRecyclerView(list: List<SkilBean.Result>) {
 
-       // var recyclerView = find<RecyclerView>(R.id.recycler_view)
-
-
-//        mBinding!!.recyclerView.layoutManager = LinearLayoutManager(mBinding!!.recyclerView.context)
-//        var adapter: DataAdapter = DataAdapter(list)
-//        mBinding!!.recyclerView.adapter = adapter
-
-
         mBinding!!.recyclerView.layoutManager = LinearLayoutManager(mBinding!!.recyclerView.context)
         var adapter: DataQuickAdapter = DataQuickAdapter(R.layout.list_item_skil,list)
+        recycler_view.addItemDecoration(MeiZiDecoration(10))
         mBinding!!.recyclerView.adapter = adapter
     }
 

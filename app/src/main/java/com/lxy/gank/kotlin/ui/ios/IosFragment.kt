@@ -6,6 +6,7 @@ import com.lxy.gank.kotlin.base.BaseApplication
 import com.lxy.gank.kotlin.base.BaseFragment
 import com.lxy.gank.kotlin.ui.bean.SkilBean
 import com.lxy.gank.kotlin.ui.common.DataQuickAdapter
+import com.lxy.gank.kotlin.ui.common.MeiZiDecoration
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -60,6 +61,7 @@ class IosFragment : BaseFragment() {
     fun setList(list: List<SkilBean.Result>) {
         recycler_view.layoutManager = LinearLayoutManager(context)
         val adapter: DataQuickAdapter = DataQuickAdapter(R.layout.list_item_skil, list)
+        recycler_view.addItemDecoration(MeiZiDecoration(10))
         recycler_view.adapter = adapter
     }
 }
