@@ -57,8 +57,4 @@ class ArticleDetailActivity : BaseActivity() {
 //
 //        }
     }
-
-    fun showClick() {
-        showToast(mEditText?.text.toString())
-    }
 }

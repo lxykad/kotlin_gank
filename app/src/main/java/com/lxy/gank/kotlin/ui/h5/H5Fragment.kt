@@ -1,13 +1,11 @@
 package com.lxy.gank.kotlin.ui.h5
 
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import com.lxy.gank.kotlin.R
 import com.lxy.gank.kotlin.base.BaseApplication
 import com.lxy.gank.kotlin.base.BaseFragment
 import com.lxy.gank.kotlin.databinding.FragmentH5Binding
 import com.lxy.gank.kotlin.ui.bean.SkilBean
-import com.lxy.gank.kotlin.ui.common.DataAdapter
 import com.lxy.gank.kotlin.ui.common.DataQuickAdapter
 import com.lxy.gank.kotlin.ui.common.MeiZiDecoration
 import io.reactivex.Observer
@@ -43,7 +41,7 @@ class H5Fragment : BaseFragment() {
 
         mBinding!!.recyclerView.layoutManager = LinearLayoutManager(mBinding!!.recyclerView.context)
         var adapter: DataQuickAdapter = DataQuickAdapter(R.layout.list_item_skil,list)
-        recycler_view.addItemDecoration(MeiZiDecoration(10))
+        recycler_view.addItemDecoration(MeiZiDecoration(15))
         mBinding!!.recyclerView.adapter = adapter
     }
 

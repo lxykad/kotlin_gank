@@ -12,7 +12,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_android.*
-import org.jetbrains.anko.support.v4.toast
 
 /**
  * Created by lxy on 2017/10/28.
@@ -61,7 +60,7 @@ class IosFragment : BaseFragment() {
     fun setList(list: List<SkilBean.Result>) {
         recycler_view.layoutManager = LinearLayoutManager(context)
         val adapter: DataQuickAdapter = DataQuickAdapter(R.layout.list_item_skil, list)
-        recycler_view.addItemDecoration(MeiZiDecoration(10))
+        recycler_view.addItemDecoration(MeiZiDecoration(15))
         recycler_view.adapter = adapter
     }
 }

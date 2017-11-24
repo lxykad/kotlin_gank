@@ -3,7 +3,6 @@ package com.lxy.gank.kotlin.ui.common
 import android.view.View
 import com.lxy.gank.kotlin.R
 import com.lxy.gank.kotlin.ui.detail.ArticleDetailActivity
-import com.lxy.gank.kotlin.utils.Utils
 import org.jetbrains.anko.*
 
 /**
@@ -34,10 +33,5 @@ class LayoutUI : AnkoComponent<ArticleDetailActivity> {
             }
 
         }
-    }
-
-    fun showClick() {
-
-
     }
 }
