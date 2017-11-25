@@ -13,7 +13,7 @@ class DataQuickAdapter(id: Int, list: List<SkilBean.Result>) : BaseQuickAdapter<
 
     override fun convert(helper: BaseViewHolder?, item: SkilBean.Result?) {
         helper?.setText(R.id.tv_title, item?.desc)
-                ?.setText(R.id.tv_who, item?.who?:"小刘哥")
+                ?.setText(R.id.tv_who, item?.who?:"刘欣宇")
                 ?.setText(R.id.tv_date, item?.publishedAt)
     }
 }
