@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     tools:context="com.lxy.gank.kotlin.ui.meizi.ImagePreviewActivity">
 
-    <WebView
-        android:id="@+id/web_view"
+    <ImageView
+        android:id="@+id/image_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:src="@mipmap/ic_launcher" />
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

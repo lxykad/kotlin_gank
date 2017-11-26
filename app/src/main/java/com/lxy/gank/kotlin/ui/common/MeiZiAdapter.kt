@@ -21,13 +21,13 @@ class MeiZiAdapter(resId: Int, list: List<MeiZiBean.Result>) : BaseQuickAdapter<
         val position: Int = holder?.adapterPosition as Int
         when (position % 3) {
             0 -> {
-                height = 400
+                height = 500
             }
             1 -> {
-                height = 450
+                height = 550
             }
             2 -> {
-                height = 500
+                height = 600
             }
             else -> {
                 height = 0

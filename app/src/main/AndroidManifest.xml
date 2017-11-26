@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/qmui">
+        android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,8 +21,10 @@
         </activity>
         <activity android:name=".ui.detail.ArticleDetailActivity" />
         <activity android:name=".ui.detail.VideoActivity" />
-        <activity android:name=".ui.meizi.ImagePreviewActivity"/>
-        <activity android:name=".ui.common.SkilDetailActivity"/>
+        <activity
+            android:name=".ui.meizi.ImagePreviewActivity"
+            android:theme="@style/translucentTheme" />
+        <activity android:name=".ui.common.SkilDetailActivity" />
     </application>
 
 </manifest>

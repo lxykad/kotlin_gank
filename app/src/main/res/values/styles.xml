@@ -8,11 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="qmui" parent="QMUI.Compat.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="translucentTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground" >@color/colorTranslucent</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
-
 </resources>

@@ -66,7 +66,6 @@ class MeiZiFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener,
     }
 
     override fun onLoadMoreRequested() {
-        // refresh_layout.isEnabled = false
         page++
         loadData()
     }
@@ -84,8 +83,6 @@ class MeiZiFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener,
             adapter.notifyDataSetChanged()
 
         } else {
-            // adapter.loadMoreEnd(true)// 没有分页数据时
-            // adapter.loadMoreEnd() //底部显示没有更多数据
             adapter.loadMoreComplete()
             mList.addAll(list)
             adapter.notifyDataSetChanged()
