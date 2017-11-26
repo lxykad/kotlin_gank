@@ -15,7 +15,7 @@ import com.lxy.gank.kotlin.ui.my.MyFragment
 class MainActivity : BaseActivity() {
 
     private lateinit var mBinding: ActivityMainBinding
-    private val mTabs = arrayOf("android", "ios", "前端", "图片", "我的")
+    private val mTabs = arrayOf("android", "ios", "前端", "妹纸", "拓展")
     private var mFragments: ArrayList<Fragment>? = null
 
     private val mIconUnselectIds = intArrayOf(R.drawable.ic_home_unselect,
