@@ -11,6 +11,8 @@ import com.lxy.gank.kotlin.ui.bean.SkilBean
 import com.lxy.gank.kotlin.ui.common.DataQuickAdapter
 import com.lxy.gank.kotlin.ui.common.MeiZiDecoration
 import com.lxy.gank.kotlin.ui.common.SkilDetailActivity
+import com.lxy.gank.kotlin.ui.common.SkilPresenter
+import com.lxy.gank.kotlin.ui.common.view.SkilView
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -21,12 +23,15 @@ import org.jetbrains.anko.support.v4.toast
 /**
  * Created by lxy on 2017/10/28.
  */
-class H5Fragment : BaseFragment() , BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener{
+class H5Fragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener,
+        SwipeRefreshLayout.OnRefreshListener, SkilView {
 
     var mBinding: FragmentH5Binding? = null
     private var page: Int = 0
     private lateinit var mList: MutableList<SkilBean.Result>
     private lateinit var adapter: DataQuickAdapter
+    private lateinit var presenter: SkilPresenter
+
 
     override fun visiableToUser() {
 
@@ -59,6 +64,8 @@ class H5Fragment : BaseFragment() , BaseQuickAdapter.RequestLoadMoreListener, Sw
         }
         adapter!!.setOnLoadMoreListener(this, recycler_view)
         refresh_layout.setOnRefreshListener(this)
+
+        presenter = SkilPresenter(this)
     }
 
 
@@ -97,26 +104,24 @@ class H5Fragment : BaseFragment() , BaseQuickAdapter.RequestLoadMoreListener, Sw
 
     fun loadData() {
 
-        BaseApplication.getApiService()
-                .loadSkilData("前端", 10, page)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<SkilBean> {
-                    override fun onSubscribe(d: Disposable) {
-                    }
+        presenter.getData("前端", 10, page)
 
-                    override fun onNext(t: SkilBean) {
-                        println("h5========suc==${t.results.size}")
-                        setRecyclerView(t.results)
-                    }
+    }
 
-                    override fun onError(e: Throwable) {
-                        println("h5========suc==${e.toString()}")
-                    }
+    override fun showLoading() {
 
-                    override fun onComplete() {
-                    }
-                })
+    }
+
+    override fun dismissLoading() {
+
+    }
+
+    override fun showError(msg: String) {
+
+    }
+
+    override fun showResult(list: List<SkilBean.Result>) {
+        setRecyclerView(list)
     }
 
 }

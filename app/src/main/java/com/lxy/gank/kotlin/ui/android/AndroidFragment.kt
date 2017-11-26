@@ -4,27 +4,25 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.lxy.gank.kotlin.R
-import com.lxy.gank.kotlin.base.BaseApplication
 import com.lxy.gank.kotlin.base.BaseFragment
 import com.lxy.gank.kotlin.ui.bean.SkilBean
 import com.lxy.gank.kotlin.ui.common.DataQuickAdapter
 import com.lxy.gank.kotlin.ui.common.MeiZiDecoration
 import com.lxy.gank.kotlin.ui.common.SkilDetailActivity
-import io.reactivex.Observer
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
+import com.lxy.gank.kotlin.ui.common.SkilPresenter
+import com.lxy.gank.kotlin.ui.common.view.SkilView
 import kotlinx.android.synthetic.main.fragment_android.*
-import org.jetbrains.anko.support.v4.toast
 
 /**
  * Created by lxy on 2017/10/28.
  */
-class AndroidFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
+class AndroidFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener,
+        SwipeRefreshLayout.OnRefreshListener, SkilView {
 
     private var page: Int = 0
     private lateinit var mList: MutableList<SkilBean.Result>
     private lateinit var adapter: DataQuickAdapter
+    private lateinit var presenter: SkilPresenter
 
     override fun visiableToUser() {
 
@@ -57,12 +55,13 @@ class AndroidFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener
         }
         adapter!!.setOnLoadMoreListener(this, recycler_view)
         refresh_layout.setOnRefreshListener(this)
+
+        presenter = SkilPresenter(this)
     }
 
     fun setList(list: List<SkilBean.Result>) {
 
         //  refresh_layout.isEnabled = true
-
         if (refresh_layout.isRefreshing) {
             refresh_layout.isRefreshing = false
         }
@@ -80,7 +79,6 @@ class AndroidFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener
             adapter.notifyDataSetChanged()
 
         }
-
     }
 
     override fun onRefresh() {
@@ -96,28 +94,23 @@ class AndroidFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener
 
     fun loadData() {
 
-        BaseApplication.getApiService()
-                .loadSkilData("Android", 10, page)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<SkilBean> {
-                    override fun onSubscribe(d: Disposable) {
+        presenter.getData("Android", 10, page)
+    }
 
-                    }
+    override fun showLoading() {
 
-                    override fun onComplete() {
+    }
 
-                    }
+    override fun dismissLoading() {
 
-                    override fun onNext(t: SkilBean) {
-                        println("res========suc===${t.results.size}")
-                        setList(t.results)
-                    }
+    }
 
-                    override fun onError(e: Throwable) {
-                        println("res========err")
-                    }
-                })
+    override fun showError(msg: String) {
+
+    }
+
+    override fun showResult(list: List<SkilBean.Result>) {
+        setList(list)
     }
 }
 

@@ -10,6 +10,8 @@ import com.lxy.gank.kotlin.ui.bean.SkilBean
 import com.lxy.gank.kotlin.ui.common.DataQuickAdapter
 import com.lxy.gank.kotlin.ui.common.MeiZiDecoration
 import com.lxy.gank.kotlin.ui.common.SkilDetailActivity
+import com.lxy.gank.kotlin.ui.common.SkilPresenter
+import com.lxy.gank.kotlin.ui.common.view.SkilView
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -20,11 +22,13 @@ import org.jetbrains.anko.support.v4.toast
 /**
  * Created by lxy on 2017/10/28.
  */
-class IosFragment : BaseFragment() , BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener{
+class IosFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener,
+        SwipeRefreshLayout.OnRefreshListener, SkilView {
 
     private var page: Int = 0
     private lateinit var mList: MutableList<SkilBean.Result>
     private lateinit var adapter: DataQuickAdapter
+    private lateinit var presenter: SkilPresenter
 
     override fun visiableToUser() {
 
@@ -58,28 +62,13 @@ class IosFragment : BaseFragment() , BaseQuickAdapter.RequestLoadMoreListener, S
         }
         adapter!!.setOnLoadMoreListener(this, recycler_view)
         refresh_layout.setOnRefreshListener(this)
+        presenter = SkilPresenter(this)
     }
 
     fun loadData() {
-        BaseApplication.getApiService()
-                .loadSkilData("iOS", 10, page)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<SkilBean> {
-                    override fun onError(e: Throwable) {
-                    }
 
-                    override fun onComplete() {
-                    }
+        presenter.getData("iOS", 10, page)
 
-                    override fun onSubscribe(d: Disposable) {
-                    }
-
-                    override fun onNext(t: SkilBean) {
-                        setList(t.results)
-                    }
-
-                })
     }
 
     override fun onRefresh() {
@@ -115,6 +104,19 @@ class IosFragment : BaseFragment() , BaseQuickAdapter.RequestLoadMoreListener, S
 
         }
 
+    }
+
+    override fun showLoading() {
+    }
+
+    override fun dismissLoading() {
+    }
+
+    override fun showError(msg: String) {
+    }
+
+    override fun showResult(list: List<SkilBean.Result>) {
+        setList(list)
     }
 
 }

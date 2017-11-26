@@ -4,26 +4,24 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.StaggeredGridLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.lxy.gank.kotlin.R
-import com.lxy.gank.kotlin.base.BaseApplication
 import com.lxy.gank.kotlin.base.BaseFragment
 import com.lxy.gank.kotlin.ui.bean.MeiZiBean
 import com.lxy.gank.kotlin.ui.common.MeiZiAdapter
 import com.lxy.gank.kotlin.ui.common.MeiZiDecoration
-import io.reactivex.Observer
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
+import com.lxy.gank.kotlin.ui.common.MeiZiPresenter
+import com.lxy.gank.kotlin.ui.common.view.MeiZiView
 import kotlinx.android.synthetic.main.fragment_android.*
-import org.jetbrains.anko.support.v4.toast
 
 /**
  * Created by lxy on 2017/10/28.
  */
-class MeiZiFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
+class MeiZiFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener,
+        SwipeRefreshLayout.OnRefreshListener, MeiZiView {
 
-    private var page: Int = 0
+    private var page: Int = 1
     private lateinit var mList: MutableList<MeiZiBean.Result>
     private lateinit var adapter: MeiZiAdapter
+    private lateinit var presenter: MeiZiPresenter
 
     override fun visiableToUser() {
     }
@@ -54,33 +52,16 @@ class MeiZiFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener, 
         }
         adapter!!.setOnLoadMoreListener(this, recycler_view)
         refresh_layout.setOnRefreshListener(this)
+
+        presenter = MeiZiPresenter(this)
     }
 
     fun loadData() {
-        BaseApplication.getApiService()
-                .loadMeiZiData("福利", 10, page)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<MeiZiBean> {
-                    override fun onSubscribe(d: Disposable) {
-                    }
-
-                    override fun onNext(t: MeiZiBean) {
-                        setList(t.results)
-                    }
-
-                    override fun onComplete() {
-                    }
-
-                    override fun onError(e: Throwable) {
-                        toast("err")
-                    }
-
-                })
+        presenter.getMeiZiData("福利", 12, page)
     }
 
     override fun onRefresh() {
-        page = 0
+        page = 1
         loadData()
     }
 
@@ -97,7 +78,7 @@ class MeiZiFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener, 
             refresh_layout.isRefreshing = false
         }
 
-        if (page == 0) {
+        if (page == 1) {
             mList.clear()
             mList.addAll(list)
             adapter.notifyDataSetChanged()
@@ -112,4 +93,16 @@ class MeiZiFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener, 
         }
     }
 
+    override fun showLoading() {
+    }
+
+    override fun dismissLoading() {
+    }
+
+    override fun showError(msg: String) {
+    }
+
+    override fun showResult(list: List<MeiZiBean.Result>) {
+        setList(list)
+    }
 }
