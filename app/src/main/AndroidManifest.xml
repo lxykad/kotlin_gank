@@ -25,6 +25,9 @@
             android:name=".ui.meizi.ImagePreviewActivity"
             android:theme="@style/translucentTheme" />
         <activity android:name=".ui.common.SkilDetailActivity" />
+        <activity
+            android:name=".ui.meizi.ImageDetailActivity"
+            android:theme="@style/translucentTheme" />
     </application>
 
 </manifest>

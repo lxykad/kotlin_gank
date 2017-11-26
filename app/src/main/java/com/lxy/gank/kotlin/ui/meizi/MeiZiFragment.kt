@@ -2,6 +2,7 @@ package com.lxy.gank.kotlin.ui.meizi
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.StaggeredGridLayoutManager
+import android.widget.ImageView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.lxy.gank.kotlin.R
 import com.lxy.gank.kotlin.base.BaseFragment
@@ -48,7 +49,10 @@ class MeiZiFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener,
 
         adapter!!.setOnItemClickListener { adapter, view, position ->
             val bean = mList?.get(position)
-            ImagePreviewActivity.gotoPage(context, bean.url)
+
+            // ImagePreviewActivity.gotoPage(context, bean.url)
+            val img = view.findViewById<ImageView>(R.id.image_view)
+            ImageDetailActivity.goToPage(context, bean.url, img)
         }
         adapter!!.setOnLoadMoreListener(this, recycler_view)
         refresh_layout.setOnRefreshListener(this)
@@ -69,7 +73,6 @@ class MeiZiFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener,
         page++
         loadData()
     }
-
 
     fun setList(list: List<MeiZiBean.Result>) {
 

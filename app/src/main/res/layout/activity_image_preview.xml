@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     tools:context="com.lxy.gank.kotlin.ui.meizi.ImagePreviewActivity">
 
-    <ImageView
-        android:id="@+id/image_view"
+    <com.wingsofts.dragphotoview.DragPhotoView
+        android:id="@+id/drag_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
