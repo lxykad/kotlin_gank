@@ -1,5 +1,7 @@
 package com.lxy.gank.kotlin;
 
+import android.webkit.WebView;
+
 /**
  * Created by a on 2017/11/6.
  */

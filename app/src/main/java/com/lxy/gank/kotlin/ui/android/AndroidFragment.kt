@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_android.*
 class AndroidFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener,
         SwipeRefreshLayout.OnRefreshListener, SkilView {
 
-    private var page: Int = 0
+    private var page: Int = 1
     private lateinit var mList: MutableList<SkilBean.Result>
     private lateinit var adapter: DataQuickAdapter
     private lateinit var presenter: SkilPresenter
@@ -66,7 +66,7 @@ class AndroidFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener
             refresh_layout.isRefreshing = false
         }
 
-        if (page == 0) {
+        if (page == 1) {
             mList.clear()
             mList.addAll(list)
             adapter.notifyDataSetChanged()
@@ -82,7 +82,7 @@ class AndroidFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener
     }
 
     override fun onRefresh() {
-        page = 0
+        page = 1
         loadData()
     }
 

@@ -10,6 +10,9 @@ import android.support.v4.app.Fragment;
 import android.transition.Explode;
 import android.view.ViewTreeObserver;
 import android.view.Window;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -106,7 +109,6 @@ public class ImageDetailActivity extends BaseActivity implements DragPhotoView.O
                 //onBackPressed();
             }
         });
-
     }
 
     public void initData() {
