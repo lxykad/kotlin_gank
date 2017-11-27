@@ -4,7 +4,6 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.lxy.gank.kotlin.R
-import com.lxy.gank.kotlin.base.BaseApplication
 import com.lxy.gank.kotlin.base.BaseFragment
 import com.lxy.gank.kotlin.ui.bean.SkilBean
 import com.lxy.gank.kotlin.ui.common.DataQuickAdapter
@@ -12,12 +11,7 @@ import com.lxy.gank.kotlin.ui.common.MeiZiDecoration
 import com.lxy.gank.kotlin.ui.common.SkilDetailActivity
 import com.lxy.gank.kotlin.ui.common.SkilPresenter
 import com.lxy.gank.kotlin.ui.common.view.SkilView
-import io.reactivex.Observer
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_android.*
-import org.jetbrains.anko.support.v4.toast
+import kotlinx.android.synthetic.main.fragment_ios.*
 
 /**
  * Created by lxy on 2017/10/28.
@@ -49,6 +43,7 @@ class IosFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener,
     }
 
     fun init() {
+        tv_title.text = "IOS技术"
         mList = mutableListOf()
         recycler_view.layoutManager = LinearLayoutManager(context)
         adapter = DataQuickAdapter(R.layout.list_item_skil, mList)

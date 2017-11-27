@@ -1,8 +1,10 @@
 package com.lxy.gank.kotlin.ui.android
 
+import android.content.Intent
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.jakewharton.rxbinding2.view.RxView
 import com.lxy.gank.kotlin.R
 import com.lxy.gank.kotlin.base.BaseFragment
 import com.lxy.gank.kotlin.ui.bean.SkilBean
@@ -11,7 +13,11 @@ import com.lxy.gank.kotlin.ui.common.MeiZiDecoration
 import com.lxy.gank.kotlin.ui.common.SkilDetailActivity
 import com.lxy.gank.kotlin.ui.common.SkilPresenter
 import com.lxy.gank.kotlin.ui.common.view.SkilView
+import com.lxy.gank.kotlin.ui.search.SearchActivity
+import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.fragment_android.*
+import org.jetbrains.anko.support.v4.toast
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by lxy on 2017/10/28.
@@ -42,6 +48,7 @@ class AndroidFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener
     }
 
     fun init() {
+        tv_title.text = "Android技术"
         mList = mutableListOf()
         recycler_view.layoutManager = LinearLayoutManager(context)
         adapter = DataQuickAdapter(R.layout.list_item_skil, mList)
@@ -57,6 +64,12 @@ class AndroidFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener
         refresh_layout.setOnRefreshListener(this)
 
         presenter = SkilPresenter(this)
+
+        RxView.clicks(iv_search)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(Consumer {
+                    startActivity(Intent(context,SearchActivity::class.java))
+                })
     }
 
     fun setList(list: List<SkilBean.Result>) {

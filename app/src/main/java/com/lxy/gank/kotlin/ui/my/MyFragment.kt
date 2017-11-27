@@ -1,14 +1,7 @@
 package com.lxy.gank.kotlin.ui.my
 
-import android.content.Intent
-import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.lxy.gank.kotlin.R
 import com.lxy.gank.kotlin.base.BaseFragment
@@ -18,11 +11,7 @@ import com.lxy.gank.kotlin.ui.common.MeiZiDecoration
 import com.lxy.gank.kotlin.ui.common.SkilDetailActivity
 import com.lxy.gank.kotlin.ui.common.SkilPresenter
 import com.lxy.gank.kotlin.ui.common.view.SkilView
-import com.lxy.gank.kotlin.ui.detail.ArticleDetailActivity
-import kotlinx.android.synthetic.main.fragment_android.*
-import org.jetbrains.anko.*
-import org.jetbrains.anko.support.v4.UI
-import org.jetbrains.anko.support.v4.find
+import kotlinx.android.synthetic.main.fragment_my.*
 
 /**
  * Created by a on 2017/11/7.
@@ -53,6 +42,7 @@ class MyFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener,
     }
 
     fun init() {
+        tv_title.text = "综合拓展"
         mList = mutableListOf()
         recycler_view.layoutManager = LinearLayoutManager(context)
         adapter = DataQuickAdapter(R.layout.list_item_skil, mList)
