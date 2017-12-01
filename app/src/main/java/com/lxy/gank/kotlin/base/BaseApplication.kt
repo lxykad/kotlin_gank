@@ -2,9 +2,12 @@ package com.lxy.gank.kotlin.base
 
 import android.app.Application
 import com.lxy.gank.kotlin.ui.http.ApiService
+import com.lxy.gank.kotlin.ui.http.CacheProviders
 import com.lxy.gank.kotlin.ui.http.HttpHelper
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
+import io.rx_cache2.internal.RxCache
+import io.victoralbertos.jolyglot.GsonSpeaker
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -24,7 +27,7 @@ class BaseApplication : Application() {
     }
 
     companion object {
-        
+
         fun getApiService(): ApiService {
             val apiService = Retrofit.Builder()
                     .client(getOkhttpClient()?.build())
@@ -50,6 +53,13 @@ class BaseApplication : Application() {
             log.level = HttpLoggingInterceptor.Level.BODY
 
             return builder
+        }
+
+        fun getCacheProviders(): CacheProviders {
+
+            return RxCache.Builder()
+                    .persistence(null, GsonSpeaker())
+                    .using(CacheProviders::class.java)
         }
 
     }
