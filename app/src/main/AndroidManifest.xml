@@ -28,6 +28,7 @@
         <activity
             android:name=".ui.meizi.ImageDetailActivity"
             android:theme="@style/translucentTheme" />
+        <activity android:name=".ui.search.SearchActivity"></activity>
     </application>
 
 </manifest>

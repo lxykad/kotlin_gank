@@ -11,7 +11,7 @@ import com.lxy.gank.kotlin.ui.common.MeiZiAdapter
 import com.lxy.gank.kotlin.ui.common.MeiZiDecoration
 import com.lxy.gank.kotlin.ui.common.MeiZiPresenter
 import com.lxy.gank.kotlin.ui.common.view.MeiZiView
-import kotlinx.android.synthetic.main.fragment_android.*
+import kotlinx.android.synthetic.main.fragment_meizi.*
 
 /**
  * Created by lxy on 2017/10/28.
@@ -40,6 +40,7 @@ class MeiZiFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener,
     }
 
     fun init() {
+        tv_title.text = "美女"
         mList = mutableListOf()
         recycler_view.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         adapter = MeiZiAdapter(R.layout.list_item_meizi, mList)

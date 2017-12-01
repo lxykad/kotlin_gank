@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.flyco.tablayout.listener.CustomTabEntity
+import com.jakewharton.rxbinding2.view.RxView
 import com.lxy.gank.kotlin.base.BaseActivity
 import com.lxy.gank.kotlin.databinding.ActivityMainBinding
 import com.lxy.gank.kotlin.ui.android.AndroidFragment
