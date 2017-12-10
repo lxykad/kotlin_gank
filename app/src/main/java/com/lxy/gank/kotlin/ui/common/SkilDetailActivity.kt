@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.View
 import android.webkit.*
 import android.widget.ProgressBar
-import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.lxy.gank.kotlin.base.BaseActivity
 import com.lxy.gank.kotlin.ui.bean.SkilBean
 import org.jetbrains.anko.*

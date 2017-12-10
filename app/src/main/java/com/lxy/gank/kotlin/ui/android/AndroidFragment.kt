@@ -67,7 +67,8 @@ class AndroidFragment : BaseFragment(), BaseQuickAdapter.RequestLoadMoreListener
         RxView.clicks(iv_search)
                 .throttleFirst(2, TimeUnit.SECONDS)
                 .subscribe(Consumer {
-                    startActivity(Intent(context,SearchActivity::class.java))
+                   // startActivity(Intent(context,SearchActivity::class.java))
+                    SearchActivity.gotoPage(context)
                 })
     }
 
