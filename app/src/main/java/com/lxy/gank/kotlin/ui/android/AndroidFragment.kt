@@ -16,7 +16,6 @@ import com.lxy.gank.kotlin.ui.common.view.SkilView
 import com.lxy.gank.kotlin.ui.search.SearchActivity
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.fragment_android.*
-import org.jetbrains.anko.support.v4.toast
 import java.util.concurrent.TimeUnit
 
 /**
